@@ -1,2 +1,9 @@
-// The Swift Programming Language
-// https://docs.swift.org/swift-book
+public struct MyFramework {
+    public static func text() -> String {
+        "MyFramework"
+    }
+    public static func printText() {
+        print("MyFramework")
+    }
+    
+}
