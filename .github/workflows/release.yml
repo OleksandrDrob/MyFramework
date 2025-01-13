@@ -1,0 +1,62 @@
+name: Release XCFramework
+
+on:
+  push:
+    tags:
+      - 'v*'  # Trigger the workflow when a tag like "v1.0.0" is pushed
+
+jobs:
+  release:
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Set Up Xcode
+      uses: maxim-lobanov/setup-xcode@v2
+      with:
+        xcode-version: '14'  # Specify the version of Xcode required
+
+    - name: Build XCFramework for iOS
+      run: |
+        xcodebuild archive \
+          -scheme MyFramework \
+          -destination "generic/platform=iOS" \
+          -archivePath "./build/ios_devices" \
+          SKIP_INSTALL=NO BUILD_LIBRARY_FOR_DISTRIBUTION=YES
+
+        xcodebuild archive \
+          -scheme MyFramework \
+          -destination "generic/platform=iOS Simulator" \
+          -archivePath "./build/ios_simulators" \
+          SKIP_INSTALL=NO BUILD_LIBRARY_FOR_DISTRIBUTION=YES
+
+        xcodebuild -create-xcframework \
+          -framework "./build/ios_devices.xcarchive/Products/Library/Frameworks/MyFramework.framework" \
+          -framework "./build/ios_simulators.xcarchive/Products/Library/Frameworks/MyFramework.framework" \
+          -output "./build/MyFramework.xcframework"
+
+    - name: Zip XCFramework
+      run: |
+        cd ./build
+        zip -r MyFramework.xcframework.zip MyFramework.xcframework
+
+    - name: Compute Checksum
+      id: checksum
+      run: |
+        swift package compute-checksum ./build/MyFramework.xcframework.zip
+      shell: bash
+
+    - name: Create Release
+      uses: ncipollo/release-action@v1
+      with:
+        tag: ${{ github.ref_name }}
+        name: Release ${{ github.ref_name }}
+        body: |
+          ### What's Changed
+          - Add a description of changes here.
+        draft: false
+        prerelease: false
+        files: |
+          ./build/MyFramework.xcframework.zip
