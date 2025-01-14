@@ -1,0 +1,84 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "MyXC",
+    "printedName": "MyXC",
+    "children": [
+      {
+        "kind": "TypeDecl",
+        "name": "MyFramework",
+        "printedName": "MyFramework",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "text",
+            "printedName": "text()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:4MyXC0A9FrameworkV4textSSyFZ",
+            "mangledName": "$s4MyXC0A9FrameworkV4textSSyFZ",
+            "moduleName": "MyXC",
+            "static": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "printText",
+            "printedName": "printText()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:4MyXC0A9FrameworkV9printTextyyFZ",
+            "mangledName": "$s4MyXC0A9FrameworkV9printTextyyFZ",
+            "moduleName": "MyXC",
+            "static": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:4MyXC0A9FrameworkV",
+        "mangledName": "$s4MyXC0A9FrameworkV",
+        "moduleName": "MyXC",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
+        ]
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": []
+}

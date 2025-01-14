@@ -1,0 +1,6 @@
+framework module MyXC {
+  umbrella header "MyXC.h"
+  export *
+
+  module * { export * }
+}

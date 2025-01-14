@@ -15,7 +15,7 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "MyXC",
-            path: "./build/MyXC.xcframework" // Relative path to the xcframework
+            path: "./MyXC.xcframework" // Relative path to the xcframework
         )
     ]
 )
