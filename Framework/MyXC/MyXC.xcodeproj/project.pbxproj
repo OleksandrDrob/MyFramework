@@ -49,7 +49,7 @@
 			path = MyXCTests;
 			sourceTree = "<group>";
 		};
-		D98B082D2D365433008E5260 /* Sources */ = {
+		D98B08332D365658008E5260 /* Sources */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			name = Sources;
 			path = /Users/sasha/Code/Exp/SPMTests/SameRepo/MyFramework/Sources;
@@ -79,7 +79,7 @@
 		D98B07F22D357148008E5260 = {
 			isa = PBXGroup;
 			children = (
-				D98B082D2D365433008E5260 /* Sources */,
+				D98B08332D365658008E5260 /* Sources */,
 				D98B07FE2D357148008E5260 /* MyXC */,
 				D98B08082D357148008E5260 /* MyXCTests */,
 				D98B07FD2D357148008E5260 /* Products */,
@@ -123,7 +123,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				D98B07FE2D357148008E5260 /* MyXC */,
-				D98B082D2D365433008E5260 /* Sources */,
+				D98B08332D365658008E5260 /* Sources */,
 			);
 			name = MyXC;
 			packageProductDependencies = (
