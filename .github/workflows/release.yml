@@ -19,34 +19,42 @@ jobs:
       with:
         xcode-version: '16.1.0'
 
-    - name: Build XCFramework for iOS
+    - name: Build MyXC XCFramework for iOS
       run: |
+        # Navigate to the Framework/MyXC directory where the xcframework is defined
+        cd Framework/MyXC
+
+        # Build for iOS Device
         xcodebuild archive \
-          -scheme MyFramework \
+          -scheme MyXC \
           -destination "generic/platform=iOS" \
           -archivePath "./build/ios_devices" \
           SKIP_INSTALL=NO BUILD_LIBRARY_FOR_DISTRIBUTION=YES
 
+        # Build for iOS Simulator
         xcodebuild archive \
-          -scheme MyFramework \
+          -scheme MyXC \
           -destination "generic/platform=iOS Simulator" \
           -archivePath "./build/ios_simulators" \
           SKIP_INSTALL=NO BUILD_LIBRARY_FOR_DISTRIBUTION=YES
 
+        # Create the xcframework
         xcodebuild -create-xcframework \
-          -framework "./build/ios_devices.xcarchive/Products/Library/Frameworks/MyFramework.framework" \
-          -framework "./build/ios_simulators.xcarchive/Products/Library/Frameworks/MyFramework.framework" \
-          -output "./build/MyFramework.xcframework"
+          -framework "./build/ios_devices.xcarchive/Products/Library/Frameworks/MyXC.framework" \
+          -framework "./build/ios_simulators.xcarchive/Products/Library/Frameworks/MyXC.framework" \
+          -output "./build/MyXC.xcframework"
 
     - name: Zip XCFramework
       run: |
-        cd ./build
-        zip -r MyFramework.xcframework.zip MyFramework.xcframework
+        # Navigate to the build directory to zip the xcframework
+        cd Framework/MyXC/build
+        zip -r MyXC.xcframework.zip MyXC.xcframework
 
     - name: Compute Checksum
       id: checksum
       run: |
-        swift package compute-checksum ./build/MyFramework.xcframework.zip
+        # Compute checksum for the zipped xcframework
+        swift package compute-checksum ./Framework/MyXC/build/MyXC.xcframework.zip
       shell: bash
 
     - name: Create Release
@@ -60,4 +68,4 @@ jobs:
         draft: false
         prerelease: false
         files: |
-          ./build/MyFramework.xcframework.zip
+          ./Framework/MyXC/build/MyXC.xcframework.zip
