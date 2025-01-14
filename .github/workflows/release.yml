@@ -6,6 +6,10 @@ on:
       - 'v*'  # Trigger the workflow when a tag like "v1.0.0" is pushed
   workflow_dispatch:
 
+permissions:
+  contents: write  # Required to create releases and upload assets
+  id-token: write   # Needed for upload
+
 jobs:
   release:
     runs-on: macos-latest
@@ -57,7 +61,6 @@ jobs:
       id: checksum
       run: |
         # Compute checksum for the zipped xcframework
-        # swift package compute-checksum ./Framework/MyXC/build/MyXC.xcframework.zip
          swift package compute-checksum ./Framework/MyXC/MyXC.xcframework.zip
       shell: bash
 
@@ -72,5 +75,4 @@ jobs:
         draft: false
         prerelease: false
         files: |
-          # ./Framework/MyXC/build/MyXC.xcframework.zip
           ./Framework/MyXC/MyXC.xcframework.zip
