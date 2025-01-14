@@ -74,5 +74,5 @@ jobs:
           - Add a description of changes here.
         draft: false
         prerelease: false
-        files: |
+        artifacts: |
           ./Framework/MyXC/MyXC.xcframework.zip
