@@ -57,7 +57,8 @@ jobs:
       id: checksum
       run: |
         # Compute checksum for the zipped xcframework
-        swift package compute-checksum ./Framework/MyXC/build/MyXC.xcframework.zip
+        # swift package compute-checksum ./Framework/MyXC/build/MyXC.xcframework.zip
+         swift package compute-checksum ./Framework/MyXC/MyXC.xcframework.zip
       shell: bash
 
     - name: Create Release
@@ -71,4 +72,5 @@ jobs:
         draft: false
         prerelease: false
         files: |
-          ./Framework/MyXC/build/MyXC.xcframework.zip
+          # ./Framework/MyXC/build/MyXC.xcframework.zip
+          ./Framework/MyXC/MyXC.xcframework.zip
