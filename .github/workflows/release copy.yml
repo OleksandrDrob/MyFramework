@@ -4,12 +4,6 @@ on:
   push:
     tags:
       - '*'  # Trigger the workflow when a tag like "v1.0.0" is pushed
-  workflow_dispatch:
-    inputs:
-      version:
-        description: 'Version for the release'
-        required: true
-        default: '0.0.0'
 
 permissions:
   contents: write  # Required to create releases and upload assets
@@ -28,39 +22,13 @@ jobs:
       with:
         xcode-version: '16.1.0'
 
-    # - name: Build MyXC XCFramework for iOS
-    #   run: |
-    #     # Navigate to the Framework/MyXC directory where the xcframework is defined
-    #     cd Framework/MyXC
-
-    #     # Build for iOS Device
-    #     xcodebuild archive \
-    #       -scheme MyXC \
-    #       -configuration Release \
-    #       -destination "generic/platform=iOS" \
-    #       -archivePath './build/MyXC.framework-iphoneos.xcarchive' \
-    #       SKIP_INSTALL=NO \
-    #       BUILD_LIBRARY_FOR_DISTRIBUTION=YES
-
-    #     # Build for iOS Simulator
-    #     xcodebuild archive \
-    #       -scheme MyXC \
-    #       -destination "generic/platform=iOS Simulator" \
-    #       -archivePath './build/MyXC.framework-iphonesimulator.xcarchive' \
-    #       SKIP_INSTALL=NO \
-    #       BUILD_LIBRARY_FOR_DISTRIBUTION=YES
-
-    #     # Create the xcframework
-    #     xcodebuild -create-xcframework \
-    #       -framework './build/MyXC.framework-iphonesimulator.xcarchive/Products/Library/Frameworks/MyXC.framework' \
-    #       -framework './build/MyXC.framework-iphoneos.xcarchive/Products/Library/Frameworks/MyXC.framework' \
-    #       -output './build/MyXC.xcframework'
-
-    - name: Zip XCFramework
+    - name: Create zip with xcframework
       run: |
-        # Navigate to the build directory to zip the xcframework
-        cd Framework/MyXC
-        zip -r MyXC.xcframework.zip MyXC.xcframework
+        # Make sure the script is executable (just in case)
+        chmod +x Framework/MyXC/build_xcframework.sh
+
+        # Run the script to create the XCFramework
+        ./Framework/MyXC/build_xcframework.sh
 
     - name: Compute Checksum
       id: checksum
