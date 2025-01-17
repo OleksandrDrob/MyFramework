@@ -1,9 +1,9 @@
-name: Release XCFramework
+name: Release XCFramework 2
 
 on:
   push:
     tags:
-      - 'v*'  # Trigger the workflow when a tag like "v1.0.0" is pushed
+      - '*'  # Trigger the workflow when a tag like "v1.0.0" is pushed
   workflow_dispatch:
 
 permissions:
