@@ -4,7 +4,7 @@ on:
   push:
     tags:
       - '*'  # Trigger the workflow when a tag like "v1.0.0" is pushed
-   workflow_dispatch:
+  workflow_dispatch:
     inputs:
       version:
         description: 'Version for the release'
