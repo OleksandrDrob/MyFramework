@@ -2,6 +2,8 @@
 
 set -e
 
+cd Framework/MyXC
+
 echo "Deleting existing build folder..."
 rm -rf './build'
 
