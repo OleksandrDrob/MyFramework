@@ -3,7 +3,7 @@ public struct MyFramework {
         "MyFramework"
     }
     public static func printText() {
-        print("MyFramework1")
+        print("MyFramework2")
     }
     
 }
